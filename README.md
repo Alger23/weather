@@ -1,3 +1,36 @@
+# Today's weather
+
+## Build
+
+```
+nx build weather
+
+# or
+
+yarn nx build weather
+```
+
+The build artifacts will be stored in the dist/ directory. Use the --prod flag for a production build.
+
+## Running unit test
+
+```
+nx test weather
+
+# or
+
+yarn test weather
+```
+
+## Running end-to-end tests
+
+```
+nx e2e weather
+
+# or
+
+yarn nx e2e weather
+```
 
 
 # Seektop
