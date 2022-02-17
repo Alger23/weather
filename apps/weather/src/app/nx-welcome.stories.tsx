@@ -6,7 +6,8 @@ export default {
   title: 'NxWelcome',
 } as Meta;
 
-const Template: Story = (args) => <NxWelcome {...args} />;
+const Template: Story = ({title, ...args}) =>
+  <NxWelcome title={title} {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {};
