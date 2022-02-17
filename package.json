@@ -25,6 +25,7 @@
     "@nrwl/jest": "13.8.2",
     "@nrwl/linter": "13.8.2",
     "@nrwl/react": "13.8.2",
+    "@nrwl/storybook": "^13.8.2",
     "@nrwl/tao": "13.8.2",
     "@nrwl/web": "13.8.2",
     "@nrwl/workspace": "13.8.2",
