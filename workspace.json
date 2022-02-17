@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "ui": "libs/ui",
     "weather": "apps/weather",
     "weather-e2e": "apps/weather-e2e"
   }
