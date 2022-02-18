@@ -9,7 +9,7 @@ export interface InputProps {
 }
 
 const StyledInput = styled.input`
-  color: pink;
+  color:${({theme}) => theme.font.color};
 `;
 
 export const Input = (props: InputProps) =>

@@ -1,3 +1,4 @@
+export * from './lib/icon-button/icon-button';
 export * from './lib/button/button';
 export * from './lib/input/input';
 export * from './lib/typography/typography';

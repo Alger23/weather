@@ -8,6 +8,17 @@ const defaultTheme = {
   font: {
     color: 'black',
   },
+  button:{
+    hover:{
+      borderColor: 'blue'
+    }
+  },
+  img:{
+    hover:{
+      borderColor: 'blue'
+    }
+  }
+
 };
 
 export default defaultTheme;

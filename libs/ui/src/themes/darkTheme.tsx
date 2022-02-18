@@ -8,6 +8,16 @@ const darkTheme = {
   font: {
     color: 'white',
   },
+  button:{
+    hover:{
+      borderColor: 'yellow'
+    }
+  },
+  img:{
+    hover:{
+      borderColor: 'yellow'
+    }
+  }
 };
 
 export default darkTheme;

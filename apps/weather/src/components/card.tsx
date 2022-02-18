@@ -1,5 +1,3 @@
-
-/* eslint-disable-next-line */
 import styled from "@emotion/styled";
 import {SectionHeader} from "@seektop/ui";
 import React from "react";

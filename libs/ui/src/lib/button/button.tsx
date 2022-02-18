@@ -8,6 +8,10 @@ export interface ButtonProps {
 
 const StyledButton = styled.button`
   color: ${({theme})=> theme.font.color };
+  cursor: pointer;
+  &:hover {
+    border-color: ${({theme})=>theme.button.hover.borderColor};
+  }
 `;
 
 export function Button(props: ButtonProps) {

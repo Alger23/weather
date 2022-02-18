@@ -1,6 +1,6 @@
 import {call, put, SagaReturnType, takeLatest } from "redux-saga/effects";
 import {WeatherActionTypes} from "./weatherActionTypes";
-import {RequestWeatherAction} from "./weatherDeclaration";
+import {RedoSearchHistoryAction, RemoveSearchHistoryAction, RequestWeatherAction} from "./weatherDeclaration";
 import * as weatherApi from "./weatherApi";
 import {weatherActions} from './weatherReducer';
 
@@ -21,9 +21,11 @@ function getErrorMessage(e:any){
 
 type WeatherResponseData = SagaReturnType<typeof weatherApi.getTodayWeather>;
 
-function* requestWeather(action: RequestWeatherAction){
+function* getWeather(city: string, country: string){
   try {
-    const {city, country} = action.payload;
+    if(city.trim()===''){
+      throw('city field required!')
+    }
     const response: WeatherResponseData = yield call(weatherApi.getTodayWeather, city, country);
     yield put(weatherActions.responseWeatherSuccess(response.data));
     const data = response.data;
@@ -33,6 +35,15 @@ function* requestWeather(action: RequestWeatherAction){
   }
 }
 
+function* requestWeather(action: RequestWeatherAction){
+ yield call(getWeather, action.payload.city, action.payload.country);
+}
+
+export function* redoSearchHistory(action: RedoSearchHistoryAction){
+  yield call(getWeather, action.payload.city, action.payload.country);
+}
+
 export function* saga(){
   yield takeLatest(WeatherActionTypes.WEATHER_REQUEST, requestWeather);
+  yield takeLatest(WeatherActionTypes.SEARCH_HISTORY_REDO, redoSearchHistory);
 }

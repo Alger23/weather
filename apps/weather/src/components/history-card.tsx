@@ -1,35 +1,84 @@
 import styled from "@emotion/styled";
 import {Card} from "./card";
-import {useSelector} from "react-redux";
+import {connect, ConnectedProps} from "react-redux";
 import {RootState} from "../_redux/rootReducer";
+import IconSearch from "../assets/search-24.png";
+import IconTrash from "../assets/trash-24.png";
+import {IconButton} from "@seektop/ui";
+import {SearchHistoryItem} from "../_redux/weather/weatherDeclaration";
+import {weatherActions} from "../_redux/weather/weatherReducer";
+
+
+const mapState = (state: RootState) => ({
+  histories: state.weather.searchHistory
+});
+
+const {
+  removeSearchHistory,
+  redoSearchHistory
+} = weatherActions;
+
+const mapDispatch = {
+  removeSearchHistory,
+  redoSearchHistory
+};
+
+const connector = connect(mapState, mapDispatch);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type Props = PropsFromRedux & HistoryBoxProps;
 
 /* eslint-disable-next-line */
-export interface HistoryBoxProps {}
+export interface HistoryBoxProps {
+}
 
 const StyledSection = styled.div`
 `;
 
-export function HistoryCard(props: HistoryBoxProps) {
-  const histories = useSelector((state: RootState)=> state.weather.searchHistory);
+const StyledRow = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export function HistoryCard(props: Props) {
+
+  function search(item: SearchHistoryItem) {
+    props.redoSearchHistory({city: item.city, country: item.country});
+  }
+
+  function remove(item: SearchHistoryItem) {
+    props.removeSearchHistory({city: item.city, country: item.country});
+  }
 
   return (
     <StyledSection>
       <Card title="Search History">
-        {histories.length===0 ?
+        {/*{props.histories.map((item, index) => (*/}
+        {/*  <StyledRow key={index}>*/}
+        {/*    <div>{index + 1}. {item.city}, {item.country}</div>*/}
+        {/*    <div>{item.date.toLocaleTimeString('en-US')}</div>*/}
+        {/*    <IconButton src={IconSearch} onClick={() => search(item)}/>*/}
+        {/*    <IconButton src={IconTrash} onClick={() => remove(item)}/>*/}
+        {/*  </StyledRow>*/}
+        {/*))}*/}
+
+        {props.histories.length === 0 ?
           'No Record' :
           <table>
-            {histories && histories.map((item,index)=>(<tr>
-              <td>{index +1}. {item.city}, {item.country}</td>
-              <td>{item.date.toLocaleTimeString('en-US')}</td>
-              <td></td>
+            <tbody>
+            {props.histories && props.histories.map((item, index) => (<tr key={index}>
+              <td style={{width: '80%'}}>{index + 1}. {item.city}, {item.country}</td>
+              <td>{item.date.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit', second:'2-digit'})}</td>
+              <td>
+                <IconButton src={IconSearch} onClick={() => search(item)}/>
+                <IconButton src={IconTrash} onClick={() => remove(item)}/>
+              </td>
             </tr>))}
+            </tbody>
           </table>
         }
-
-        <pre>{JSON.stringify(histories, null, 2)}</pre>
       </Card>
     </StyledSection>
   );
 }
 
-export default HistoryCard;
+export default connector(HistoryCard);

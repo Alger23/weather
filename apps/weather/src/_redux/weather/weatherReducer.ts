@@ -19,7 +19,7 @@ export const weatherReducer = (state = initialState, action: WeatherActions):Wea
       return {...state, weatherData: {weather: action.payload.data, success: true, error: null}};
     case WeatherActionTypes.SEARCH_HISTORY_ADD: {
       const newItem = {...action.payload, date: new Date()};
-      const histories = state.searchHistory.filter(item=> item.city!==newItem.city && item.country !== newItem.country);
+      const histories = state.searchHistory.filter(item=> item.city!==newItem.city || item.country !== newItem.country);
       return {...state, searchHistory: [newItem, ...histories]}
     }
     case WeatherActionTypes.SEARCH_HISTORY_REMOVE:{

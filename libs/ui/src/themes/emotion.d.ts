@@ -10,6 +10,16 @@ declare module '@emotion/react' {
     textColor: string,
     font: {
       color: string,
+    },
+    button:{
+      hover:{
+        borderColor: string
+      }
+    },
+    img:{
+      hover:{
+        borderColor: string
+      }
     }
   }
 }
