@@ -26,6 +26,8 @@ function* requestWeather(action: RequestWeatherAction){
     const {city, country} = action.payload;
     const response: WeatherResponseData = yield call(weatherApi.getTodayWeather, city, country);
     yield put(weatherActions.responseWeatherSuccess(response.data));
+    const data = response.data;
+    yield put(weatherActions.addSearchHistory({city: data.name, country: data.sys.country}))
   }catch(e){
     yield put(weatherActions.responseWeatherFailure(getErrorMessage(e)));
   }

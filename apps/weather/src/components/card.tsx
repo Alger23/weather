@@ -10,7 +10,6 @@ export interface CardProps {
 }
 
 const StyledSection = styled.div`
-
 `;
 
 export function Card({title, ...props}: CardProps){
