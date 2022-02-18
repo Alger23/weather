@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import WeatherBox from "./weather-box";
+import WeatherCard from "../components/weather-card";
+import HistoryCard from "../components/history-card";
 
 const StyledApp = styled.div`
   background-color: ${({ theme }) => theme.backgroundColor};
@@ -8,7 +9,8 @@ const StyledApp = styled.div`
 export function App() {
   return (
     <StyledApp>
-      <WeatherBox/>
+      <WeatherCard/>
+      <HistoryCard/>
     </StyledApp>
   );
 }
