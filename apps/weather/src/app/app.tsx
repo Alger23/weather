@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
-import NxWelcome from './nx-welcome';
+import WeatherBox from "./weather-box";
 
 const StyledApp = styled.div`
-  // Your style here
+  background-color: ${({ theme }) => theme.backgroundColor};
 `;
 
 export function App() {
   return (
     <StyledApp>
-      <NxWelcome title="weather" />
+      <WeatherBox/>
     </StyledApp>
   );
 }

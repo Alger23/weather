@@ -6,7 +6,7 @@ export interface SectionHeaderProps {
 }
 
 const StyledSectionHeader = styled.div`
-  color: black;
+  color: ${({theme})=> theme.font.color};
 `;
 
 export function SectionHeader({value}: SectionHeaderProps) {
