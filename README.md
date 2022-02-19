@@ -1,6 +1,6 @@
 # Today's weather
 
-![today's weather screenshot](img.png)
+![today's weather screenshot](screenshot.png)
 
 ## Build
 
