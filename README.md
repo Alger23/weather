@@ -1,5 +1,7 @@
 # Today's weather
 
+![today's weather screenshot](img.png)
+
 ## Build
 
 ```
