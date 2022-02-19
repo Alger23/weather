@@ -24,7 +24,7 @@ export const weatherReducer = (state = initialState, action: WeatherActions):Wea
     }
     case WeatherActionTypes.SEARCH_HISTORY_REMOVE:{
       const target = action.payload;
-      const histories = state.searchHistory.filter(item=> item.city!==target.city && item.country !== target.country);
+      const histories = state.searchHistory.filter(item=> item.city!==target.city || item.country !== target.country);
       return {...state, searchHistory: histories}
     }
     default:
