@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import rootReducer, {rootSaga} from "./rootReducer";
+import {throttle} from "lodash";
+import {loadState, saveState} from "./localStorage";
 
 declare global {
   interface Window {
@@ -13,8 +15,17 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(sagaMiddleware))
+  // load state form localStorage to initialize store
+  loadState(),
+  composeEnhancers(applyMiddleware(sagaMiddleware)),
 );
+
+/**
+ * Save redux store state to localStorage when state changed
+ */
+store.subscribe(throttle(()=>{
+  saveState(store.getState())
+},1000));
 
 sagaMiddleware.run(rootSaga);
 

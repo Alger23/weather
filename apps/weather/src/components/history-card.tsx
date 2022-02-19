@@ -63,13 +63,18 @@ export function HistoryCard(props: Props) {
     props.removeSearchHistory({city: item.city, country: item.country});
   }
 
+  const formatTime = (timeMillionSeconds: number)=>{
+    const date = new Date(timeMillionSeconds);
+    return date.toLocaleTimeString('en-US', {hour12: true, hour: '2-digit', minute: '2-digit', second:'2-digit'});
+  }
+
   return (
     <StyledSection>
       <Card title="Search History">
         {props.histories.map((item, index) => (
           <StyledRow key={index}>
             <div>{index + 1}. {item.city}, {item.country}</div>
-            <div>{item.date.toLocaleTimeString('en-US')}</div>
+            <div>{formatTime(item.date)}</div>
             <IconButton src={IconSearch} onClick={() => search(item)}/>
             <IconButton src={IconTrash} onClick={() => remove(item)}/>
           </StyledRow>

@@ -8,7 +8,7 @@ export interface WeatherData {
 export interface SearchHistoryItem {
   city: string,
   country: string,
-  date: Date
+  date: number
 }
 export interface WeatherState {
   weatherData: WeatherData,
