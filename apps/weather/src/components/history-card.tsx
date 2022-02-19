@@ -39,6 +39,14 @@ const StyledRow = styled.div`
   flex-direction: row;
 `;
 
+const StyledNoData = styled.div`
+  font-size: 3rem;
+  text-align: center;
+  margin: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+`
+
 export function HistoryCard(props: Props) {
 
   function search(item: SearchHistoryItem) {
@@ -62,15 +70,15 @@ export function HistoryCard(props: Props) {
         {/*))}*/}
 
         {props.histories.length === 0 ?
-          'No Record' :
+          <StyledNoData>No Record</StyledNoData> :
           <table>
             <tbody>
             {props.histories && props.histories.map((item, index) => (<tr key={index}>
               <td style={{width: '80%'}}>{index + 1}. {item.city}, {item.country}</td>
               <td>{item.date.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit', second:'2-digit'})}</td>
               <td>
-                <IconButton src={IconSearch} onClick={() => search(item)}/>
-                <IconButton src={IconTrash} onClick={() => remove(item)}/>
+                <IconButton src={IconSearch} onClick={() => search(item)} title="Search"/>
+                <IconButton src={IconTrash} onClick={() => remove(item)} title="Remove"/>
               </td>
             </tr>))}
             </tbody>

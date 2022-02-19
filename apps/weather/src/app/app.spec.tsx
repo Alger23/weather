@@ -11,12 +11,4 @@ describe('App', () => {
 
     expect(baseElement).toBeTruthy();
   });
-
-  // it('should have a greeting as the title', () => {
-  //   const { getByText } = render(
-  //     <ThemeProvider theme={defaultTheme.default}><App /></ThemeProvider>
-  //   );
-  //
-  //   expect(getByText(/Welcome weather/gi)).toBeTruthy();
-  // });
 });

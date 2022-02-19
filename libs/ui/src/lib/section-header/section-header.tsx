@@ -5,14 +5,15 @@ export interface SectionHeaderProps {
   value: string;
 }
 
-const StyledSectionHeader = styled.div`
-  color: ${({theme})=> theme.font.color};
+const StyledSectionHeader = styled.h3`
+  color: ${({theme}) => theme.font.color};
+  margin-block-end: 0.3em;
 `;
 
 export function SectionHeader({value}: SectionHeaderProps) {
   return (
     <StyledSectionHeader>
-      <h1>{value}</h1>
+      {value}
     </StyledSectionHeader>
   );
 }

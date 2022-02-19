@@ -9,10 +9,10 @@ const StyledTypography = styled.span`
   color: ${({theme}) => theme.font.color};
 `;
 
-export function Typography(props: TypographyProps) {
+export function Typography({children, ...props}: TypographyProps) {
   return (
     <StyledTypography>
-      {props.children}
+      {children}
     </StyledTypography>
   );
 }

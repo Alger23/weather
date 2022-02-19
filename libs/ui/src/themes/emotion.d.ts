@@ -20,6 +20,12 @@ declare module '@emotion/react' {
       hover:{
         borderColor: string
       }
+    },
+    alert:{
+      error: string,
+      warning: string,
+      info: string,
+      success: string
     }
   }
 }

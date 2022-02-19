@@ -17,6 +17,12 @@ const defaultTheme = {
     hover:{
       borderColor: 'blue'
     }
+  },
+  alert:{
+    error: '#ff6060',
+    warning: '#fabb67',
+    info: '#81ffe1',
+    success: '#9aff79'
   }
 
 };

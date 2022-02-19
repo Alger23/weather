@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 export interface IconButtonProps {
   src?: string;
   onClick?: (e: React.MouseEvent<HTMLImageElement>)=>void;
+  title?:string;
 }
 
 const StyledIconButton = styled.img`

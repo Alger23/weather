@@ -17,6 +17,12 @@ const darkTheme = {
     hover:{
       borderColor: 'yellow'
     }
+  },
+  alert:{
+    error: '#fff',
+    warning: '#fff',
+    info: '#fff',
+    success: '#fff'
   }
 };
 
