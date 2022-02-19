@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import {Alert, Button, Input, Typography} from "@seektop/ui";
+import {Alert, Button} from "@seektop/ui";
 import {Card} from "./card";
-import {useState} from "react";
+import React, {useState} from "react";
 import {TodayWeatherCard} from "./today-weather-card";
 import {RootState} from "../_redux/rootReducer";
 import {weatherActions} from "../_redux/weather/weatherReducer";
@@ -48,17 +48,23 @@ export function WeatherCard(props: Props) {
     setCountry('');
   };
 
+  function searchOnPressEnter(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === 'Enter') {
+      searchClick();
+    }
+  }
+
   return (
     <StyledSection>
       <Card title="Today's Weather">
         <div css={css`
           display: flex;
           & > * {
-          margin-right: 5px;
+          margin-right: 10px;
           }
         `}>
-          <InputField label="City:" value={city} onChange={e=> setCity(e.target.value)}/>
-          <InputField label="Country:" value={country} onChange={e=> setCountry(e.target.value)}/>
+          <InputField label="City:" value={city} onChange={e=> setCity(e.target.value)} onKeyDown={searchOnPressEnter}/>
+          <InputField label="Country:" value={country} onChange={e=> setCountry(e.target.value)} onKeyDown={searchOnPressEnter}/>
           <Button onClick={searchClick}>Search</Button>
           <Button onClick={clearClick}>Clear</Button>
         </div>
