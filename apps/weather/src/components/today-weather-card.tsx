@@ -6,13 +6,12 @@ export interface TodayWeatherCardProps {
   data: WeatherResponse
 }
 
-
 const StyledItemRow = styled.div`
   display: flex;
   flex-direction: row;
   padding-bottom: 0.5rem;
 
-  & > span:nth-child(1) {
+  & > span:nth-of-type(1) {
     width: 130px;
   }
 `;
@@ -31,7 +30,7 @@ const StyledSection = styled.div`
   max-width: 300px;
 `;
 
-const StyledWeather = styled.h1`
+const WeatherMain = styled.h1`
   padding: 0.3rem 0 1.5rem 0;
   margin: 0;
 `;
@@ -39,14 +38,17 @@ const StyledWeather = styled.h1`
 export function TodayWeatherCard({data}: TodayWeatherCardProps) {
   const dateFormat = (unix_timestamp: number) => {
     const date = new Date(unix_timestamp * 1000);
-    const d = date.toLocaleDateString('en-CA');
+    const dd = String(date.getDate()).padStart(2, '0');
+    const mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = date.getFullYear();
+    //const d = date.toLocaleDateString('en-CA');
     const t = date.toLocaleTimeString('en-US', {hour12: true, hour: '2-digit', minute: '2-digit'});
-    return `${d} ${t}`
+    return `${yyyy}-${mm}-${dd} ${t}`
   };
   return (
     <StyledSection>
       <Typography>{data.name}, {data.sys.country}</Typography>
-      <StyledWeather>{data.weather[0].main}</StyledWeather>
+      <WeatherMain>{data.weather[0].main}</WeatherMain>
       <WeatherProperty caption="Description:" text={data.weather[0].description}/>
       <WeatherProperty caption="Temperature:" text={`${data.main.temp_min}℃ ~ ${data.main.temp_max}℃`}/>
       <WeatherProperty caption="Humidity:" text={`${data.main.humidity}％`}/>

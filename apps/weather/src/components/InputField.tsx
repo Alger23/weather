@@ -11,7 +11,7 @@ export interface InputFieldProps {
 
 const StyledSection = styled.div`
   display: inline-block;
-
+  margin-top: 5px;
   & > span {
     margin-right: 0.5em;
   }

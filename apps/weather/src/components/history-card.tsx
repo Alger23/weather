@@ -8,7 +8,6 @@ import {IconButton} from "@seektop/ui";
 import {SearchHistoryItem} from "../_redux/weather/weatherDeclaration";
 import {weatherActions} from "../_redux/weather/weatherReducer";
 
-
 const mapState = (state: RootState) => ({
   histories: state.weather.searchHistory
 });
@@ -35,12 +34,19 @@ const StyledSection = styled.div`
 `;
 
 const StyledRow = styled.div`
+  border-bottom: #adadad 1px solid;
+  padding: 1rem 0;
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+
+  & > div:nth-of-type(1) {
+    margin-right: auto;
+  }
 `;
 
 const StyledNoData = styled.div`
-  font-size: 3rem;
+  font-size: x-large;
   text-align: center;
   margin: 1rem;
   padding-top: 3rem;
@@ -60,30 +66,16 @@ export function HistoryCard(props: Props) {
   return (
     <StyledSection>
       <Card title="Search History">
-        {/*{props.histories.map((item, index) => (*/}
-        {/*  <StyledRow key={index}>*/}
-        {/*    <div>{index + 1}. {item.city}, {item.country}</div>*/}
-        {/*    <div>{item.date.toLocaleTimeString('en-US')}</div>*/}
-        {/*    <IconButton src={IconSearch} onClick={() => search(item)}/>*/}
-        {/*    <IconButton src={IconTrash} onClick={() => remove(item)}/>*/}
-        {/*  </StyledRow>*/}
-        {/*))}*/}
+        {props.histories.map((item, index) => (
+          <StyledRow key={index}>
+            <div>{index + 1}. {item.city}, {item.country}</div>
+            <div>{item.date.toLocaleTimeString('en-US')}</div>
+            <IconButton src={IconSearch} onClick={() => search(item)}/>
+            <IconButton src={IconTrash} onClick={() => remove(item)}/>
+          </StyledRow>
+        ))}
 
-        {props.histories.length === 0 ?
-          <StyledNoData>No Record</StyledNoData> :
-          <table>
-            <tbody>
-            {props.histories && props.histories.map((item, index) => (<tr key={index}>
-              <td style={{width: '80%'}}>{index + 1}. {item.city}, {item.country}</td>
-              <td>{item.date.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit', second:'2-digit'})}</td>
-              <td>
-                <IconButton src={IconSearch} onClick={() => search(item)} title="Search"/>
-                <IconButton src={IconTrash} onClick={() => remove(item)} title="Remove"/>
-              </td>
-            </tr>))}
-            </tbody>
-          </table>
-        }
+        {props.histories.length===0 && <StyledNoData>No Record</StyledNoData>}
       </Card>
     </StyledSection>
   );

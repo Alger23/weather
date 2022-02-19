@@ -1,3 +1,4 @@
+
 import styled from "@emotion/styled";
 import {Alert, Button} from "@seektop/ui";
 import {Card} from "./card";
@@ -29,44 +30,63 @@ type Props = PropsFromRedux & WeatherBoxProps;
 
 const StyledSection = styled.div`
   color: ${({theme}) => theme.font.color};
-
 `;
 
-
-
+const ButtonGroup = styled.div`
+  margin-top: 5px;
+  & > button {
+    margin-right: 5px;
+  }
+  & > button:last-of-type {
+   margin-right: 0;
+  }
+`;
 
 export function WeatherCard(props: Props) {
   const [city, setCity] = useState<string>('');
   const [country, setCountry] = useState<string>('');
 
+  /**
+   * Search weather
+   */
   const searchClick = () => {
     props.requestWeather({city, country});
   };
 
+  /**
+   * Clear input fields
+   */
   const clearClick = () => {
     setCity('');
     setCountry('');
   };
 
-  function searchOnPressEnter(e: React.KeyboardEvent<HTMLInputElement>) {
+  /**
+   * Search weather on press Enter
+   * @param e
+   */
+  const searchOnPressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       searchClick();
     }
-  }
+  };
 
   return (
     <StyledSection>
       <Card title="Today's Weather">
         <div css={css`
           display: flex;
+          flex-wrap: wrap;
           & > * {
           margin-right: 10px;
           }
         `}>
           <InputField label="City:" value={city} onChange={e=> setCity(e.target.value)} onKeyDown={searchOnPressEnter}/>
           <InputField label="Country:" value={country} onChange={e=> setCountry(e.target.value)} onKeyDown={searchOnPressEnter}/>
-          <Button onClick={searchClick}>Search</Button>
-          <Button onClick={clearClick}>Clear</Button>
+          <ButtonGroup>
+            <Button onClick={searchClick}>Search</Button>
+            <Button onClick={clearClick}>Clear</Button>
+          </ButtonGroup>
         </div>
 
 

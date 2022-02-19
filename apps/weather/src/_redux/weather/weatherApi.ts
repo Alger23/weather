@@ -3,6 +3,11 @@ import {WeatherResponse} from "./weatherDeclaration";
 
 const baseURL = "https://api.openweathermap.org/data/2.5/weather";
 
+/**
+ * Get today's weather
+ * @param city required
+ * @param country
+ */
 export function getTodayWeather(city: string, country: string) {
   const q = country == null
     ? city
