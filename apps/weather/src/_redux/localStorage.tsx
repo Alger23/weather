@@ -1,4 +1,7 @@
-
+/**
+ * Save redux state to localStorage
+ * @param state RootState
+ */
 export const saveState = (state:any) => {
   try {
     const serializedState = JSON.stringify(state);
@@ -7,6 +10,11 @@ export const saveState = (state:any) => {
     // Ignore write errors.
   }
 };
+
+/**
+ * Load redux state from localStorage
+ * @returns 
+ */
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');

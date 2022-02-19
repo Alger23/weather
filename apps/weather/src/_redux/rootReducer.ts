@@ -1,3 +1,7 @@
+/**
+ * Configure root reducer and root saga
+ */
+
 import {combineReducers} from "redux";
 import {all} from "redux-saga/effects";
 import {weatherReducer} from "./weather/weatherReducer";

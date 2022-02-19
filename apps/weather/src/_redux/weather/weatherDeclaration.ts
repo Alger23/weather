@@ -5,11 +5,13 @@ export interface WeatherData {
   success: boolean,
   error: string | null
 }
+
 export interface SearchHistoryItem {
   city: string,
   country: string,
   date: number
 }
+
 export interface WeatherState {
   weatherData: WeatherData,
   searchHistory: Array<SearchHistoryItem>
@@ -53,7 +55,9 @@ export type WeatherActions =
   RemoveSearchHistoryAction |
   RedoSearchHistoryAction;
 
-
+/**
+ * Weather response result
+ */
 export interface WeatherResponse {
   "coord": {
     "lon": number,

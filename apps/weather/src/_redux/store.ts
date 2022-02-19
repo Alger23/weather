@@ -1,3 +1,8 @@
+/**
+ * Configure redux store, 
+ * load initial state from localStorage;
+ * save state changes to localStorage;
+ */
 import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import rootReducer, {rootSaga} from "./rootReducer";

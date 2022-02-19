@@ -4,6 +4,7 @@
 
 ```
 nx build weather
+#if you install `nx` as global command, you can use `nx` directly
 
 # or
 
@@ -31,6 +32,16 @@ nx e2e weather
 
 yarn nx e2e weather
 ```
+
+## Weather API Key
+
+Change your apikey in file `./apps/weather/.env` name is `NX_WeatherApiKey`.
+
+`.env`
+```
+NX_WeatherApiKey=put_youar_api_key_here
+```
+
 
 
 # Seektop

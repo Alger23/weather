@@ -1,3 +1,7 @@
+/**
+ * Defined Theme type for emotion/styled used
+ */
+
 import '@emotion/react'
 
 declare module '@emotion/react' {
